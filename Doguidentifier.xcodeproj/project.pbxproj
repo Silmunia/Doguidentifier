@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92766E1C25D15FD200A5C7F2 /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E1B25D15FD200A5C7F2 /* GameScreenViewController.swift */; };
+		92766E2125D15FE300A5C7F2 /* ResultScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E2025D15FE300A5C7F2 /* ResultScreenViewController.swift */; };
+		92766E2D25D16B5100A5C7F2 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E2C25D16B5100A5C7F2 /* ImageExtensions.swift */; };
+		92766E3825D17F7C00A5C7F2 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E3725D17F7C00A5C7F2 /* ColorExtensions.swift */; };
+		92766E3E25D1882A00A5C7F2 /* DogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E3D25D1882A00A5C7F2 /* DogButton.swift */; };
+		92E18DA025D159710005E327 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E18D9F25D159710005E327 /* StartScreenViewController.swift */; };
 		92FD34DB25CC3D24001D154D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD34DA25CC3D24001D154D /* AppDelegate.swift */; };
 		92FD34DD25CC3D24001D154D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD34DC25CC3D24001D154D /* SceneDelegate.swift */; };
 		92FD34DF25CC3D24001D154D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD34DE25CC3D24001D154D /* ViewController.swift */; };
-		92FD34E225CC3D24001D154D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FD34E025CC3D24001D154D /* Main.storyboard */; };
 		92FD34E525CC3D24001D154D /* Doguidentifier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92FD34E325CC3D24001D154D /* Doguidentifier.xcdatamodeld */; };
 		92FD34E725CC3D25001D154D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92FD34E625CC3D25001D154D /* Assets.xcassets */; };
 		92FD34EA25CC3D25001D154D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 92FD34E825CC3D25001D154D /* LaunchScreen.storyboard */; };
@@ -36,11 +41,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		92766E1B25D15FD200A5C7F2 /* GameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
+		92766E2025D15FE300A5C7F2 /* ResultScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultScreenViewController.swift; sourceTree = "<group>"; };
+		92766E2C25D16B5100A5C7F2 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
+		92766E3725D17F7C00A5C7F2 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		92766E3D25D1882A00A5C7F2 /* DogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogButton.swift; sourceTree = "<group>"; };
+		92E18D9F25D159710005E327 /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		92FD34D725CC3D24001D154D /* Doguidentifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doguidentifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FD34DA25CC3D24001D154D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		92FD34DC25CC3D24001D154D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		92FD34DE25CC3D24001D154D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		92FD34E125CC3D24001D154D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		92FD34E425CC3D24001D154D /* Doguidentifier.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Doguidentifier.xcdatamodel; sourceTree = "<group>"; };
 		92FD34E625CC3D25001D154D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		92FD34E925CC3D25001D154D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -78,6 +88,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		92766E2B25D16B3500A5C7F2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				92766E2C25D16B5100A5C7F2 /* ImageExtensions.swift */,
+				92766E3725D17F7C00A5C7F2 /* ColorExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		92766E3C25D187E000A5C7F2 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				92766E3D25D1882A00A5C7F2 /* DogButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		92E18D9B25D156070005E327 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92E18D9C25D1560E0005E327 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				92E18D9F25D159710005E327 /* StartScreenViewController.swift */,
+				92766E1B25D15FD200A5C7F2 /* GameScreenViewController.swift */,
+				92766E2025D15FE300A5C7F2 /* ResultScreenViewController.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		92E18D9D25D156160005E327 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		92E18D9E25D1561E0005E327 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		92FD34CE25CC3D24001D154D = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +159,19 @@
 		92FD34D925CC3D24001D154D /* Doguidentifier */ = {
 			isa = PBXGroup;
 			children = (
+				92766E3C25D187E000A5C7F2 /* Components */,
+				92FD34EB25CC3D25001D154D /* Info.plist */,
 				92FD34DA25CC3D24001D154D /* AppDelegate.swift */,
 				92FD34DC25CC3D24001D154D /* SceneDelegate.swift */,
 				92FD34DE25CC3D24001D154D /* ViewController.swift */,
-				92FD34E025CC3D24001D154D /* Main.storyboard */,
 				92FD34E625CC3D25001D154D /* Assets.xcassets */,
-				92FD34E825CC3D25001D154D /* LaunchScreen.storyboard */,
-				92FD34EB25CC3D25001D154D /* Info.plist */,
 				92FD34E325CC3D24001D154D /* Doguidentifier.xcdatamodeld */,
+				92766E2B25D16B3500A5C7F2 /* Extensions */,
+				92FD34E825CC3D25001D154D /* LaunchScreen.storyboard */,
+				92E18D9D25D156160005E327 /* Model */,
+				92E18D9E25D1561E0005E327 /* Service */,
+				92E18D9B25D156070005E327 /* View */,
+				92E18D9C25D1560E0005E327 /* View Model */,
 			);
 			path = Doguidentifier;
 			sourceTree = "<group>";
@@ -236,7 +299,6 @@
 			files = (
 				92FD34EA25CC3D25001D154D /* LaunchScreen.storyboard in Resources */,
 				92FD34E725CC3D25001D154D /* Assets.xcassets in Resources */,
-				92FD34E225CC3D24001D154D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +323,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92766E1C25D15FD200A5C7F2 /* GameScreenViewController.swift in Sources */,
+				92E18DA025D159710005E327 /* StartScreenViewController.swift in Sources */,
 				92FD34DF25CC3D24001D154D /* ViewController.swift in Sources */,
+				92766E2D25D16B5100A5C7F2 /* ImageExtensions.swift in Sources */,
+				92766E3E25D1882A00A5C7F2 /* DogButton.swift in Sources */,
 				92FD34E525CC3D24001D154D /* Doguidentifier.xcdatamodeld in Sources */,
+				92766E3825D17F7C00A5C7F2 /* ColorExtensions.swift in Sources */,
 				92FD34DB25CC3D24001D154D /* AppDelegate.swift in Sources */,
+				92766E2125D15FE300A5C7F2 /* ResultScreenViewController.swift in Sources */,
 				92FD34DD25CC3D24001D154D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,14 +368,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		92FD34E025CC3D24001D154D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				92FD34E125CC3D24001D154D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		92FD34E825CC3D25001D154D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
