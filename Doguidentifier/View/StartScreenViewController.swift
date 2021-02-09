@@ -34,8 +34,8 @@ class StartScreenViewController: UIViewController {
 		return button
 	}()
 	
-	lazy var numPhotoSetter : PhotoSetter = {
-		let setter = PhotoSetter(width: 250, height: 150, fillColor: UIColor.dogPurple, borderColor: UIColor.dogPalePurple)
+	lazy var numPhotoSetter : PhotoQuantitySetter = {
+		let setter = PhotoQuantitySetter(width: 250, height: 150, fillColor: UIColor.dogPurple, borderColor: UIColor.dogPalePurple)
 		setter.translatesAutoresizingMaskIntoConstraints = false
 		return setter
 	}()
@@ -60,7 +60,7 @@ class StartScreenViewController: UIViewController {
 			screenBackground.rightAnchor.constraint(equalTo: self.view.rightAnchor),
 			screenBackground.leftAnchor.constraint(equalTo: self.view.leftAnchor),
 			
-			titleImage.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 100),
+			titleImage.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50),
 			titleImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 			titleImage.widthAnchor.constraint(equalToConstant: 370),
 			titleImage.heightAnchor.constraint(equalToConstant: 280),

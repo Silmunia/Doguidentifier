@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9259FA8B25D2ABBF0097128F /* BoneTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259FA8A25D2ABBF0097128F /* BoneTitle.swift */; };
+		9259FA9825D2B0240097128F /* PhotoQuantityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259FA9725D2B0240097128F /* PhotoQuantityIndicator.swift */; };
+		9259FAA025D2B6B60097128F /* PerformanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9259FA9F25D2B6B60097128F /* PerformanceInfo.swift */; };
 		92766E1C25D15FD200A5C7F2 /* GameScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E1B25D15FD200A5C7F2 /* GameScreenViewController.swift */; };
 		92766E2125D15FE300A5C7F2 /* ResultScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E2025D15FE300A5C7F2 /* ResultScreenViewController.swift */; };
 		92766E2D25D16B5100A5C7F2 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E2C25D16B5100A5C7F2 /* ImageExtensions.swift */; };
 		92766E3825D17F7C00A5C7F2 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E3725D17F7C00A5C7F2 /* ColorExtensions.swift */; };
 		92766E3E25D1882A00A5C7F2 /* DogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E3D25D1882A00A5C7F2 /* DogButton.swift */; };
-		92E0C83D25D1B262003EE40C /* PhotoSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E0C83C25D1B262003EE40C /* PhotoSetter.swift */; };
+		92E0C83D25D1B262003EE40C /* PhotoQuantitySetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E0C83C25D1B262003EE40C /* PhotoQuantitySetter.swift */; };
 		92E18DA025D159710005E327 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E18D9F25D159710005E327 /* StartScreenViewController.swift */; };
 		92FD34DB25CC3D24001D154D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD34DA25CC3D24001D154D /* AppDelegate.swift */; };
 		92FD34DD25CC3D24001D154D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD34DC25CC3D24001D154D /* SceneDelegate.swift */; };
@@ -42,12 +45,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9259FA8A25D2ABBF0097128F /* BoneTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoneTitle.swift; sourceTree = "<group>"; };
+		9259FA9725D2B0240097128F /* PhotoQuantityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoQuantityIndicator.swift; sourceTree = "<group>"; };
+		9259FA9F25D2B6B60097128F /* PerformanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerformanceInfo.swift; sourceTree = "<group>"; };
 		92766E1B25D15FD200A5C7F2 /* GameScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScreenViewController.swift; sourceTree = "<group>"; };
 		92766E2025D15FE300A5C7F2 /* ResultScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultScreenViewController.swift; sourceTree = "<group>"; };
 		92766E2C25D16B5100A5C7F2 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		92766E3725D17F7C00A5C7F2 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		92766E3D25D1882A00A5C7F2 /* DogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogButton.swift; sourceTree = "<group>"; };
-		92E0C83C25D1B262003EE40C /* PhotoSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetter.swift; sourceTree = "<group>"; };
+		92E0C83C25D1B262003EE40C /* PhotoQuantitySetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoQuantitySetter.swift; sourceTree = "<group>"; };
 		92E18D9F25D159710005E327 /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		92FD34D725CC3D24001D154D /* Doguidentifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doguidentifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FD34DA25CC3D24001D154D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +109,10 @@
 			isa = PBXGroup;
 			children = (
 				92766E3D25D1882A00A5C7F2 /* DogButton.swift */,
-				92E0C83C25D1B262003EE40C /* PhotoSetter.swift */,
+				92E0C83C25D1B262003EE40C /* PhotoQuantitySetter.swift */,
+				9259FA8A25D2ABBF0097128F /* BoneTitle.swift */,
+				9259FA9725D2B0240097128F /* PhotoQuantityIndicator.swift */,
+				9259FA9F25D2B6B60097128F /* PerformanceInfo.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -326,17 +335,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9259FA8B25D2ABBF0097128F /* BoneTitle.swift in Sources */,
 				92766E1C25D15FD200A5C7F2 /* GameScreenViewController.swift in Sources */,
 				92E18DA025D159710005E327 /* StartScreenViewController.swift in Sources */,
 				92FD34DF25CC3D24001D154D /* ViewController.swift in Sources */,
+				9259FAA025D2B6B60097128F /* PerformanceInfo.swift in Sources */,
 				92766E2D25D16B5100A5C7F2 /* ImageExtensions.swift in Sources */,
 				92766E3E25D1882A00A5C7F2 /* DogButton.swift in Sources */,
 				92FD34E525CC3D24001D154D /* Doguidentifier.xcdatamodeld in Sources */,
 				92766E3825D17F7C00A5C7F2 /* ColorExtensions.swift in Sources */,
 				92FD34DB25CC3D24001D154D /* AppDelegate.swift in Sources */,
+				9259FA9825D2B0240097128F /* PhotoQuantityIndicator.swift in Sources */,
 				92766E2125D15FE300A5C7F2 /* ResultScreenViewController.swift in Sources */,
 				92FD34DD25CC3D24001D154D /* SceneDelegate.swift in Sources */,
-				92E0C83D25D1B262003EE40C /* PhotoSetter.swift in Sources */,
+				92E0C83D25D1B262003EE40C /* PhotoQuantitySetter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
