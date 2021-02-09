@@ -9,7 +9,7 @@ import UIKit
 
 class StartScreenViewController: UIViewController {
 	
-	lazy var titleImage: UIImageView = {
+	lazy var titleImage : UIImageView = {
 		let imgView = UIImageView()
 		imgView.translatesAutoresizingMaskIntoConstraints = false
 		imgView.contentMode = .scaleAspectFit
@@ -18,7 +18,7 @@ class StartScreenViewController: UIViewController {
 		return imgView
 	}()
 	
-	lazy var screenBackground: UIImageView = {
+	lazy var screenBackground : UIImageView = {
 		let imgView = UIImageView()
 		imgView.translatesAutoresizingMaskIntoConstraints = false
 		imgView.contentMode = .scaleAspectFit
@@ -30,13 +30,14 @@ class StartScreenViewController: UIViewController {
 	lazy var startButton : DogButton = {
 		let button = DogButton(width: 250, height: 90, text: "Jogar", fontSize: 48, fillColor: UIColor.dogGreen, borderColor: UIColor.dogWhite)
 		button.translatesAutoresizingMaskIntoConstraints = false
+		button.button.addTarget(self, action: #selector(self.toGameScreen), for: .touchUpInside)
 		return button
 	}()
 	
-	lazy var quitButton : DogButton = {
-		let button = DogButton(width: 250, height: 90, text: "Encerrar", fontSize: 48, fillColor: UIColor.dogRed, borderColor: UIColor.dogWhite)
-		button.translatesAutoresizingMaskIntoConstraints = false
-		return button
+	lazy var numPhotoSetter : PhotoSetter = {
+		let setter = PhotoSetter(width: 250, height: 150, fillColor: UIColor.dogPurple, borderColor: UIColor.dogPalePurple)
+		setter.translatesAutoresizingMaskIntoConstraints = false
+		return setter
 	}()
 	
     override func viewDidLoad() {
@@ -46,16 +47,12 @@ class StartScreenViewController: UIViewController {
 		
 		configureLayout()
     }
-    
-	@objc func toGameScreen() {
-		self.navigationController?.pushViewController(GameScreenViewController(), animated: true)
-	}
 	
 	private func configureLayout() {
 		self.view.addSubview(screenBackground)
 		self.view.addSubview(titleImage)
+		self.view.addSubview(numPhotoSetter)
 		self.view.addSubview(startButton)
-		self.view.addSubview(quitButton)
 		
 		NSLayoutConstraint.activate([
 			screenBackground.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -68,22 +65,17 @@ class StartScreenViewController: UIViewController {
 			titleImage.widthAnchor.constraint(equalToConstant: 370),
 			titleImage.heightAnchor.constraint(equalToConstant: 280),
 			
-			startButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 650),
+			numPhotoSetter.topAnchor.constraint(equalTo: titleImage.bottomAnchor, constant: 75),
+			numPhotoSetter.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+			
+			startButton.topAnchor.constraint(equalTo: numPhotoSetter.bottomAnchor, constant: 40),
 			startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 			
-			quitButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 10),
-			quitButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 		])
 	}
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+	
+	@objc func toGameScreen() {
+		self.navigationController?.pushViewController(GameScreenViewController(), animated: true)
+	}
 
 }

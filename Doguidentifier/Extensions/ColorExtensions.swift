@@ -56,6 +56,8 @@ extension UIColor {
 	
 	static var dogPurple: UIColor { return UIColor(hex: "#5B2A86")! }
 	
+	static var dogPalePurple: UIColor { return UIColor(hex: "#BB84D3")! }
+	
 	static var dogNavy: UIColor { return UIColor(hex: "#073B4C")! }
 	
 }

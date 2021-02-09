@@ -12,6 +12,7 @@
 		92766E2D25D16B5100A5C7F2 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E2C25D16B5100A5C7F2 /* ImageExtensions.swift */; };
 		92766E3825D17F7C00A5C7F2 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E3725D17F7C00A5C7F2 /* ColorExtensions.swift */; };
 		92766E3E25D1882A00A5C7F2 /* DogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92766E3D25D1882A00A5C7F2 /* DogButton.swift */; };
+		92E0C83D25D1B262003EE40C /* PhotoSetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E0C83C25D1B262003EE40C /* PhotoSetter.swift */; };
 		92E18DA025D159710005E327 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E18D9F25D159710005E327 /* StartScreenViewController.swift */; };
 		92FD34DB25CC3D24001D154D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD34DA25CC3D24001D154D /* AppDelegate.swift */; };
 		92FD34DD25CC3D24001D154D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FD34DC25CC3D24001D154D /* SceneDelegate.swift */; };
@@ -46,6 +47,7 @@
 		92766E2C25D16B5100A5C7F2 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		92766E3725D17F7C00A5C7F2 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		92766E3D25D1882A00A5C7F2 /* DogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogButton.swift; sourceTree = "<group>"; };
+		92E0C83C25D1B262003EE40C /* PhotoSetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSetter.swift; sourceTree = "<group>"; };
 		92E18D9F25D159710005E327 /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		92FD34D725CC3D24001D154D /* Doguidentifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Doguidentifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92FD34DA25CC3D24001D154D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				92766E3D25D1882A00A5C7F2 /* DogButton.swift */,
+				92E0C83C25D1B262003EE40C /* PhotoSetter.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -108,6 +111,10 @@
 		92E18D9B25D156070005E327 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				92766E3C25D187E000A5C7F2 /* Components */,
+				92E18D9F25D159710005E327 /* StartScreenViewController.swift */,
+				92766E1B25D15FD200A5C7F2 /* GameScreenViewController.swift */,
+				92766E2025D15FE300A5C7F2 /* ResultScreenViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -115,9 +122,6 @@
 		92E18D9C25D1560E0005E327 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				92E18D9F25D159710005E327 /* StartScreenViewController.swift */,
-				92766E1B25D15FD200A5C7F2 /* GameScreenViewController.swift */,
-				92766E2025D15FE300A5C7F2 /* ResultScreenViewController.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -159,7 +163,6 @@
 		92FD34D925CC3D24001D154D /* Doguidentifier */ = {
 			isa = PBXGroup;
 			children = (
-				92766E3C25D187E000A5C7F2 /* Components */,
 				92FD34EB25CC3D25001D154D /* Info.plist */,
 				92FD34DA25CC3D24001D154D /* AppDelegate.swift */,
 				92FD34DC25CC3D24001D154D /* SceneDelegate.swift */,
@@ -333,6 +336,7 @@
 				92FD34DB25CC3D24001D154D /* AppDelegate.swift in Sources */,
 				92766E2125D15FE300A5C7F2 /* ResultScreenViewController.swift in Sources */,
 				92FD34DD25CC3D24001D154D /* SceneDelegate.swift in Sources */,
+				92E0C83D25D1B262003EE40C /* PhotoSetter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
