@@ -8,74 +8,84 @@
 import UIKit
 
 class GameScreenViewController: UIViewController {
-
-	lazy var buttonBackground: UIImageView = {
-		let background = UIImageView()
-		let viewColor = UIImage.imageWithColor(color: .green)
-		background.translatesAutoresizingMaskIntoConstraints = false
-		background.image = viewColor
-		self.view.addSubview(background)
-		return background
+	
+	lazy var screenBackground : UIImageView = {
+		let imgView = UIImageView()
+		imgView.translatesAutoresizingMaskIntoConstraints = false
+		imgView.contentMode = .scaleAspectFit
+		let img = UIImage(named: "GameScreenPattern")
+		imgView.image = img
+		return imgView
 	}()
 	
-	lazy var button: UIButton = {
-		let button = UIButton()
+	lazy var resultQuantity : PhotoQuantityIndicator = {
+		let indicator = PhotoQuantityIndicator(width: 150, height: 60, fontSize: 32, text: "25 / 25", fillColor: UIColor.dogNavy, borderColor: UIColor.dogPaleNavy)
+		indicator.translatesAutoresizingMaskIntoConstraints = false
+		return indicator
+	}()
+	
+	lazy var exitButton : DogButton = {
+		let button = DogButton(width: 150, height: 60, text: "Sair", fontSize: 32, fillColor: UIColor.dogRed, borderColor: UIColor.dogWhite)
 		button.translatesAutoresizingMaskIntoConstraints = false
-		button.backgroundColor = .none
-		button.addTarget(self, action: #selector(self.toResultScreen), for: .touchUpInside)
-		self.view.addSubview(button)
 		return button
 	}()
 	
-	lazy var buttonLabel: UILabel = {
-		let label = UILabel()
-		label.translatesAutoresizingMaskIntoConstraints = false
-		let systemFont = UIFont.systemFont(ofSize: 48, weight: UIFont.Weight.black)
-		label.font = UIFont(descriptor: systemFont.fontDescriptor.withDesign(.rounded)!, size: 48)
-		self.view.addSubview(label)
-		label.textAlignment = .center
-		label.backgroundColor = .clear
-		
-		let strokeTextAttributes: [NSAttributedString.Key : Any] = [
-			.strokeColor : UIColor.black,
-			.foregroundColor : UIColor.white,
-			.strokeWidth : -3.0,
-			]
-
-		label.attributedText = NSAttributedString(string: "Jogar", attributes: strokeTextAttributes)
-		
-		return label
+	lazy var dogPhoto : DogPhoto = {
+		let photo = DogPhoto(photo: "TestDog1")
+		photo.translatesAutoresizingMaskIntoConstraints = false
+		return photo
+	}()
+	
+	lazy var dogOptions : DogOptions = {
+		let options = DogOptions(options: ["Staffordshire Bullterrier", "German Longhaired Pointer", "Shetland Sheepdog", "Dalmatian"])
+		options.translatesAutoresizingMaskIntoConstraints = false
+		return options
 	}()
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		self.navigationController?.navigationBar.barStyle = .black
 
 		configureLayout()
-		
-		super.view.backgroundColor = .yellow
+		dogOptions.firstOption.button.addTarget(self, action: #selector(self.toResultScreen), for: .touchUpInside)
+		super.view.backgroundColor = UIColor.dogPurple
     }
-    
-	@objc func toResultScreen() {
-		self.navigationController?.pushViewController(ResultScreenViewController(), animated: true)
+	
+	override var preferredStatusBarStyle: UIStatusBarStyle {
+		return .lightContent
 	}
 	
 	private func configureLayout() {
+		self.view.addSubview(screenBackground)
+		self.view.addSubview(resultQuantity)
+		self.view.addSubview(exitButton)
+		self.view.addSubview(dogPhoto)
+		self.view.addSubview(dogOptions)
+		
 		NSLayoutConstraint.activate([
-			buttonBackground.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200),
-			buttonBackground.bottomAnchor.constraint(equalTo: buttonBackground.topAnchor, constant: 100),
-			buttonBackground.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 100),
-			buttonBackground.widthAnchor.constraint(equalToConstant: 200),
+			screenBackground.topAnchor.constraint(equalTo: self.view.topAnchor),
+			screenBackground.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+			screenBackground.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+			screenBackground.rightAnchor.constraint(equalTo: self.view.rightAnchor),
 			
-			button.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 200),
-			button.bottomAnchor.constraint(equalTo: button.topAnchor, constant: 100),
-			button.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 100),
-			button.widthAnchor.constraint(equalToConstant: 200),
+			resultQuantity.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 30),
+			resultQuantity.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor, constant: 50),
 			
-			buttonLabel.centerYAnchor.constraint(equalTo: buttonBackground.centerYAnchor),
-			buttonLabel.leftAnchor.constraint(equalTo: self.buttonBackground.leftAnchor),
-			buttonLabel.rightAnchor.constraint(equalTo: self.buttonBackground.rightAnchor)
+			exitButton.topAnchor.constraint(equalTo: resultQuantity.topAnchor),
+			exitButton.leftAnchor.constraint(equalTo: resultQuantity.rightAnchor, constant: 15),
+			
+			dogPhoto.topAnchor.constraint(equalTo: exitButton.bottomAnchor, constant: 30),
+			dogPhoto.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+			
+			dogOptions.topAnchor.constraint(equalTo: dogPhoto.bottomAnchor, constant: 50),
+			dogOptions.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 			
 		])
+	}
+	
+	@objc func toResultScreen() {
+		self.navigationController?.pushViewController(ResultScreenViewController(), animated: true)
 	}
 
 }

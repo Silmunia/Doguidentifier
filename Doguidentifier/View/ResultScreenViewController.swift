@@ -50,7 +50,7 @@ class ResultScreenViewController: UIViewController {
 	}()
 	
 	lazy var backButton : DogButton = {
-		let button = DogButton(width: 180, height: 70, text: "Voltar", fontSize: 42, fillColor: UIColor.dogRed, borderColor: UIColor.dogWhite)
+		let button = DogButton(width: 180, height: 70, text: "Sair", fontSize: 42, fillColor: UIColor.dogRed, borderColor: UIColor.dogWhite)
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.button.addTarget(self, action: #selector(self.toStartScreen), for: .touchUpInside)
 		return button
