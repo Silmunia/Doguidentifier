@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoSetter: UIView {
+class PhotoQuantitySetter: UIView {
 	
 	var photoQuantity = 15
 
@@ -19,7 +19,6 @@ class PhotoSetter: UIView {
 		background.layer.cornerRadius = 20
 		background.clipsToBounds = true
 		background.layer.borderWidth = 5
-		background.layer.borderColor = UIColor.dogWhite.cgColor
 		self.addSubview(background)
 		return background
 	}()

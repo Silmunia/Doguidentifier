@@ -40,8 +40,8 @@ class DogButton: UIView {
 		label.backgroundColor = .clear
 		
 		let strokeTextAttributes: [NSAttributedString.Key : Any] = [
-			.strokeColor : UIColor.black,
-			.foregroundColor : UIColor.white,
+			.strokeColor : UIColor.dogNavy,
+			.foregroundColor : UIColor.dogWhite,
 			.strokeWidth : -3.0,
 			]
 
