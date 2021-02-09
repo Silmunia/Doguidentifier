@@ -9,7 +9,7 @@ import UIKit
 
 class DogButton: UIView {
 
-	lazy var buttonBackground: UIImageView = {
+	lazy var buttonBackground : UIImageView = {
 		let background = UIImageView()
 		let viewColor = UIImage.imageWithColor(color: UIColor.dogGreen)
 		background.translatesAutoresizingMaskIntoConstraints = false
@@ -22,14 +22,15 @@ class DogButton: UIView {
 		return background
 	}()
 	
-	lazy var button: UIButton = {
+	lazy var button : UIButton = {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
+		button.isUserInteractionEnabled = true
 		self.addSubview(button)
 		return button
 	}()
 	
-	lazy var buttonLabel: UILabel = {
+	lazy var buttonLabel : UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		let systemFont = UIFont.systemFont(ofSize: 48, weight: UIFont.Weight.black)
@@ -63,21 +64,23 @@ class DogButton: UIView {
 	
 	func configureLayout(width: CGFloat, height: CGFloat) {
 		NSLayoutConstraint.activate([
+			self.widthAnchor.constraint(equalToConstant: width),
+			self.bottomAnchor.constraint(equalTo: self.topAnchor, constant: height),
+			
 			buttonBackground.topAnchor.constraint(equalTo: self.topAnchor),
 			buttonBackground.bottomAnchor.constraint(equalTo: buttonBackground.topAnchor, constant: height),
 			buttonBackground.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 			buttonBackground.widthAnchor.constraint(equalToConstant: width),
 			
-			self.bottomAnchor.constraint(equalTo: buttonBackground.bottomAnchor),
-			
-			button.topAnchor.constraint(equalTo: buttonBackground.topAnchor),
-			button.bottomAnchor.constraint(equalTo: buttonBackground.bottomAnchor),
-			button.centerYAnchor.constraint(equalTo: buttonBackground.centerYAnchor),
-			button.widthAnchor.constraint(equalToConstant: width),
-			
 			buttonLabel.centerYAnchor.constraint(equalTo: buttonBackground.centerYAnchor),
 			buttonLabel.leftAnchor.constraint(equalTo: buttonBackground.leftAnchor),
-			buttonLabel.rightAnchor.constraint(equalTo: buttonBackground.rightAnchor)
+			buttonLabel.rightAnchor.constraint(equalTo: buttonBackground.rightAnchor),
+			
+			button.topAnchor.constraint(equalTo: buttonBackground.topAnchor),
+			button.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+			button.centerXAnchor.constraint(equalTo: buttonBackground.centerXAnchor),
+			button.centerYAnchor.constraint(equalTo: buttonBackground.centerYAnchor),
+			button.widthAnchor.constraint(equalToConstant: width),
 		])
 	}
 	
