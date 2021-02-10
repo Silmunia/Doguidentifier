@@ -9,7 +9,7 @@ import UIKit
 
 class PerformanceInfo: UIView {
 
-	lazy var background : UIImageView = {
+	lazy var background: UIImageView = {
 		let background = UIImageView()
 		let viewColor = UIImage.imageWithColor(color: UIColor.dogPurple)
 		background.translatesAutoresizingMaskIntoConstraints = false
@@ -21,8 +21,8 @@ class PerformanceInfo: UIView {
 		self.addSubview(background)
 		return background
 	}()
-	
-	lazy var symbolImage : UIImageView = {
+
+	lazy var symbolImage: UIImageView = {
 		let view = UIImageView()
 		view.translatesAutoresizingMaskIntoConstraints = false
 		view.contentMode = .scaleAspectFit
@@ -30,8 +30,8 @@ class PerformanceInfo: UIView {
 		self.addSubview(view)
 		return view
 	}()
-	
-	lazy var titleLabel : UILabel = {
+
+	lazy var titleLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		let systemFont = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight.black)
@@ -39,19 +39,19 @@ class PerformanceInfo: UIView {
 		self.addSubview(label)
 		label.textAlignment = .center
 		label.backgroundColor = .clear
-		
-		let strokeTextAttributes: [NSAttributedString.Key : Any] = [
-			.strokeColor : UIColor.dogNavy,
-			.foregroundColor : UIColor.dogWhite,
-			.strokeWidth : -3.0,
+
+		let strokeTextAttributes: [NSAttributedString.Key: Any] = [
+			.strokeColor: UIColor.dogNavy,
+			.foregroundColor: UIColor.dogWhite,
+			.strokeWidth: -3.0
 			]
 
 		label.attributedText = NSAttributedString(string: "Mais Acertos", attributes: strokeTextAttributes)
 		self.addSubview(label)
 		return label
 	}()
-	
-	lazy var descLabel : UILabel = {
+
+	lazy var descLabel: UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		let systemFont = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.black)
@@ -59,11 +59,11 @@ class PerformanceInfo: UIView {
 		self.addSubview(label)
 		label.textAlignment = .center
 		label.backgroundColor = .clear
-		
-		let strokeTextAttributes: [NSAttributedString.Key : Any] = [
-			.strokeColor : UIColor.dogNavy,
-			.foregroundColor : UIColor.dogWhite,
-			.strokeWidth : -3.0,
+
+		let strokeTextAttributes: [NSAttributedString.Key: Any] = [
+			.strokeColor: UIColor.dogNavy,
+			.foregroundColor: UIColor.dogWhite,
+			.strokeWidth: -3.0
 			]
 
 		label.attributedText = NSAttributedString(string: "German Longhaired Pointer", attributes: strokeTextAttributes)
@@ -72,45 +72,45 @@ class PerformanceInfo: UIView {
 		self.addSubview(label)
 		return label
 	}()
-	
+
 	init (imageName: String, title: String, dogSpecies: String) {
 		super.init(frame: .zero)
-		
+
 		configureLayout()
-		
+
 		symbolImage.image = UIImage(named: imageName)
 		titleLabel.text = title
 		descLabel.text = dogSpecies
 	}
-	
+
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+
 	private func configureLayout() {
 		NSLayoutConstraint.activate([
 			self.widthAnchor.constraint(equalToConstant: 370),
 			self.heightAnchor.constraint(equalToConstant: 120),
-			
+
 			background.topAnchor.constraint(equalTo: self.topAnchor),
 			background.bottomAnchor.constraint(equalTo: background.topAnchor, constant: 150),
 			background.leftAnchor.constraint(equalTo: self.leftAnchor),
 			background.rightAnchor.constraint(equalTo: background.leftAnchor, constant: 370),
-			
+
 			symbolImage.topAnchor.constraint(equalTo: background.topAnchor, constant: 20),
 			symbolImage.bottomAnchor.constraint(equalTo: symbolImage.topAnchor, constant: 110),
 			symbolImage.leftAnchor.constraint(equalTo: background.leftAnchor, constant: 20),
 			symbolImage.rightAnchor.constraint(equalTo: symbolImage.leftAnchor, constant: 110),
-			
+
 			titleLabel.topAnchor.constraint(equalTo: symbolImage.topAnchor),
 			titleLabel.leftAnchor.constraint(equalTo: symbolImage.rightAnchor, constant: 5),
 			titleLabel.rightAnchor.constraint(equalTo: background.rightAnchor, constant: -15),
 			titleLabel.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 30),
-			
+
 			descLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
 			descLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
 			descLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor),
-			descLabel.bottomAnchor.constraint(equalTo: symbolImage.bottomAnchor),
+			descLabel.bottomAnchor.constraint(equalTo: symbolImage.bottomAnchor)
 		])
 	}
 
