@@ -18,10 +18,10 @@ class GameScreenViewController: UIViewController {
 		return imgView
 	}()
 	
-	lazy var resultQuantity : PhotoQuantityIndicator = {
-		let indicator = PhotoQuantityIndicator(width: 150, height: 60, fontSize: 32, text: "25 / 25", fillColor: UIColor.dogNavy, borderColor: UIColor.dogPaleNavy)
-		indicator.translatesAutoresizingMaskIntoConstraints = false
-		return indicator
+	lazy var resultQuantity : TextDisplay = {
+		let text = TextDisplay(width: 150, height: 60, fontSize: 32, text: "25 / 25", fillColor: UIColor.dogNavy, borderColor: UIColor.dogPaleNavy)
+		text.translatesAutoresizingMaskIntoConstraints = false
+		return text
 	}()
 	
 	lazy var exitButton : DogButton = {
@@ -42,13 +42,28 @@ class GameScreenViewController: UIViewController {
 		return options
 	}()
 	
+	lazy var choiceResult : ChoiceResult = {
+		let result = ChoiceResult()
+		result.translatesAutoresizingMaskIntoConstraints = false
+		return result
+	}()
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
 		self.navigationController?.navigationBar.barStyle = .black
 
 		configureLayout()
-		dogOptions.firstOption.button.addTarget(self, action: #selector(self.toResultScreen), for: .touchUpInside)
+		
+		choiceResult.isHidden = true
+		
+		dogOptions.firstOption.button.addTarget(self, action: #selector(self.correctChoice), for: .touchUpInside)
+		dogOptions.secondOption.button.addTarget(self, action: #selector(self.wrongChoice), for: .touchUpInside)
+		dogOptions.thirdOption.button.addTarget(self, action: #selector(self.wrongChoice), for: .touchUpInside)
+		dogOptions.fourthOption.button.addTarget(self, action: #selector(self.wrongChoice), for: .touchUpInside)
+		
+		choiceResult.nextButton.button.addTarget(self, action: #selector(self.toResultScreen), for: .touchUpInside)
+		
 		super.view.backgroundColor = UIColor.dogPurple
     }
 	
@@ -62,6 +77,7 @@ class GameScreenViewController: UIViewController {
 		self.view.addSubview(exitButton)
 		self.view.addSubview(dogPhoto)
 		self.view.addSubview(dogOptions)
+		self.view.addSubview(choiceResult)
 		
 		NSLayoutConstraint.activate([
 			screenBackground.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -78,10 +94,25 @@ class GameScreenViewController: UIViewController {
 			dogPhoto.topAnchor.constraint(equalTo: exitButton.bottomAnchor, constant: 30),
 			dogPhoto.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 			
+			choiceResult.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+			choiceResult.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+			
 			dogOptions.topAnchor.constraint(equalTo: dogPhoto.bottomAnchor, constant: 50),
 			dogOptions.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 			
 		])
+	}
+	
+	@objc func correctChoice() {
+		dogOptions.isHidden = true
+		choiceResult.setResultLayout(is: true, species: "Staffordshire Terrier")
+		choiceResult.isHidden = false
+	}
+	
+	@objc func wrongChoice() {
+		dogOptions.isHidden = true
+		choiceResult.setResultLayout(is: false, species: "Staffordshire Terrier")
+		choiceResult.isHidden = false
 	}
 	
 	@objc func toResultScreen() {

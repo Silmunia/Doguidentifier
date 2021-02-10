@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PhotoQuantityIndicator: UIView {
+class TextDisplay: UIView {
 
 	lazy var buttonBackground : UIImageView = {
 		let background = UIImageView()
@@ -21,7 +21,7 @@ class PhotoQuantityIndicator: UIView {
 		return background
 	}()
 	
-	lazy var numberLabel : UILabel = {
+	lazy var textLabel : UILabel = {
 		let label = UILabel()
 		label.translatesAutoresizingMaskIntoConstraints = false
 		let systemFont = UIFont.systemFont(ofSize: 48, weight: UIFont.Weight.black)
@@ -29,6 +29,9 @@ class PhotoQuantityIndicator: UIView {
 		self.addSubview(label)
 		label.textAlignment = .center
 		label.backgroundColor = .clear
+		
+		label.numberOfLines = 0
+		label.lineBreakMode = .byWordWrapping
 		
 		let strokeTextAttributes: [NSAttributedString.Key : Any] = [
 			.strokeColor : UIColor.black,
@@ -49,8 +52,8 @@ class PhotoQuantityIndicator: UIView {
 		buttonBackground.image = UIImage.imageWithColor(color: fillColor)
 		buttonBackground.layer.borderColor = borderColor.cgColor
 		
-		numberLabel.font = numberLabel.font.withSize(fontSize)
-		numberLabel.text = text
+		textLabel.font = textLabel.font.withSize(fontSize)
+		textLabel.text = text
 	}
 	
 	required init?(coder: NSCoder) {
@@ -67,9 +70,11 @@ class PhotoQuantityIndicator: UIView {
 			buttonBackground.leftAnchor.constraint(equalTo: self.leftAnchor),
 			buttonBackground.rightAnchor.constraint(equalTo: buttonBackground.leftAnchor, constant: width),
 			
-			numberLabel.centerYAnchor.constraint(equalTo: buttonBackground.centerYAnchor),
-			numberLabel.leftAnchor.constraint(equalTo: buttonBackground.leftAnchor),
-			numberLabel.rightAnchor.constraint(equalTo: buttonBackground.rightAnchor),
+			textLabel.centerYAnchor.constraint(equalTo: buttonBackground.centerYAnchor),
+			textLabel.topAnchor.constraint(equalTo: buttonBackground.topAnchor),
+			textLabel.bottomAnchor.constraint(equalTo: buttonBackground.bottomAnchor),
+			textLabel.leftAnchor.constraint(equalTo: buttonBackground.leftAnchor, constant: 10),
+			textLabel.rightAnchor.constraint(equalTo: buttonBackground.rightAnchor, constant: -10),
 		])
 	}
 	
