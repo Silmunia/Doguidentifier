@@ -24,10 +24,10 @@ class ResultScreenViewController: UIViewController {
 		return title
 	}()
 	
-	lazy var resultQuantity : PhotoQuantityIndicator = {
-		let indicator = PhotoQuantityIndicator(width: 210, height: 120, fontSize: 54, text: "25 / 25", fillColor: UIColor.dogPurple, borderColor: UIColor.dogPalePurple)
-		indicator.translatesAutoresizingMaskIntoConstraints = false
-		return indicator
+	lazy var resultQuantity : TextDisplay = {
+		let text = TextDisplay(width: 210, height: 120, fontSize: 54, text: "25 / 25", fillColor: UIColor.dogPurple, borderColor: UIColor.dogPalePurple)
+		text.translatesAutoresizingMaskIntoConstraints = false
+		return text
 	}()
 	
 	lazy var bestPerformance : PerformanceInfo = {
@@ -50,7 +50,7 @@ class ResultScreenViewController: UIViewController {
 	}()
 	
 	lazy var backButton : DogButton = {
-		let button = DogButton(width: 180, height: 70, text: "Voltar", fontSize: 42, fillColor: UIColor.dogRed, borderColor: UIColor.dogWhite)
+		let button = DogButton(width: 180, height: 70, text: "Sair", fontSize: 42, fillColor: UIColor.dogRed, borderColor: UIColor.dogWhite)
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.button.addTarget(self, action: #selector(self.toStartScreen), for: .touchUpInside)
 		return button

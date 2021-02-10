@@ -44,7 +44,9 @@ class DogButton: UIView {
 			.foregroundColor : UIColor.dogWhite,
 			.strokeWidth : -3.0,
 			]
-
+		
+		label.numberOfLines = 0
+		label.lineBreakMode = .byWordWrapping
 		label.attributedText = NSAttributedString(string: "Jogar", attributes: strokeTextAttributes)
 		
 		return label
@@ -72,9 +74,10 @@ class DogButton: UIView {
 			buttonBackground.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 			buttonBackground.widthAnchor.constraint(equalToConstant: width),
 			
-			buttonLabel.centerYAnchor.constraint(equalTo: buttonBackground.centerYAnchor),
-			buttonLabel.leftAnchor.constraint(equalTo: buttonBackground.leftAnchor),
-			buttonLabel.rightAnchor.constraint(equalTo: buttonBackground.rightAnchor),
+			buttonLabel.topAnchor.constraint(equalTo: buttonBackground.topAnchor),
+			buttonLabel.leftAnchor.constraint(equalTo: buttonBackground.leftAnchor, constant: 6),
+			buttonLabel.rightAnchor.constraint(equalTo: buttonBackground.rightAnchor, constant: -6),
+			buttonLabel.bottomAnchor.constraint(equalTo: buttonBackground.bottomAnchor),
 			
 			button.topAnchor.constraint(equalTo: buttonBackground.topAnchor),
 			button.bottomAnchor.constraint(equalTo: self.bottomAnchor),
