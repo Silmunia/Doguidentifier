@@ -56,6 +56,24 @@ class StartScreenViewController: UIViewController {
         super.viewDidLoad()
 		self.view.backgroundColor = UIColor.dogYellow
 
+		// MARK: REFERÊNCIA TEMPORÁRIA - APAGAR DEPOIS
+//		var image = "a"
+//		ServiceAPI.request(
+//				router: RouterAPI.getImage(master: "bulldog", sub: "french")) { result in
+//					switch result {
+//					case .success(let data):
+//						do {
+//							let getImage = try JSONDecoder().decode(GetImage.self, from: data!)
+//							image = getImage.message
+//							print(image)
+//						} catch {
+//							print(error)
+//						}
+//					case .failure:
+//						print(result)
+//					}
+//		}
+
 		configureLayout()
     }
 
