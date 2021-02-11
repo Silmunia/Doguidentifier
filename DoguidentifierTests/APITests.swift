@@ -139,7 +139,25 @@ class APITests: XCTestCase {
 
 	}
 
-    func testRequest_ImageRequestValidURL() throws {
+	func testRequest_ImageRequestMasterBreed() throws {
+
+		//Given
+		let url = URL(string: "https://dog.ceo/api/breed/bulldog/images/random")
+		let mockSession = URLSessionMock()
+		mockSession.testResponse = HTTPResponseMock(statusCode: 200)
+
+		let expect = expectation(description: "Getting Bulldog Image")
+
+		//When
+		ServiceAPI.request(router: RouterAPI.getMasterBreedImage(master: "bulldog"), session: mockSession) { _ in
+			XCTAssertEqual(url, mockSession.lastURL)
+			expect.fulfill()
+		}
+
+		wait(for: [expect], timeout: 10)
+	}
+
+    func testRequest_ImageRequestSubBreed() throws {
 
         //Given
 		let url = URL(string: "https://dog.ceo/api/breed/bulldog/french/images/random")
@@ -149,7 +167,7 @@ class APITests: XCTestCase {
 		let expect = expectation(description: "Getting French Bulldog Image")
 
 		//When
-		ServiceAPI.request(router: RouterAPI.getImage(master: "bulldog", sub: "french"), session: mockSession) { _ in
+		ServiceAPI.request(router: RouterAPI.getSubBreedImage(master: "bulldog", sub: "french"), session: mockSession) { _ in
 			XCTAssertEqual(url, mockSession.lastURL)
 			expect.fulfill()
 		}

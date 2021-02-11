@@ -10,18 +10,19 @@ import Foundation
 enum RouterAPI {
 
 	case getBreeds
-	case getImage(master: String, sub: String)
+	case getMasterBreedImage(master: String)
+	case getSubBreedImage(master: String, sub: String)
 
 	var scheme: String {
 		switch self {
-		case .getBreeds, .getImage:
+		case .getBreeds, .getMasterBreedImage, .getSubBreedImage:
 			return "https"
 		}
 	}
 
 	var host: String {
 		switch self {
-		case .getBreeds, .getImage:
+		case .getBreeds, .getMasterBreedImage, .getSubBreedImage:
 			return "dog.ceo"
 		}
 	}
@@ -30,14 +31,16 @@ enum RouterAPI {
 		switch self {
 		case .getBreeds:
 			return "/api/breeds/list/all"
-		case .getImage(let master, let sub):
+		case .getMasterBreedImage(let master):
+			return "/api/breed/\(master)/images/random"
+		case .getSubBreedImage(let master, let sub):
 			return "/api/breed/\(master)/\(sub)/images/random"
 		}
 	}
 
 	var method: String {
 		switch self {
-		case .getBreeds, .getImage:
+		case .getBreeds, .getMasterBreedImage, .getSubBreedImage:
 			return "GET"
 		}
 	}

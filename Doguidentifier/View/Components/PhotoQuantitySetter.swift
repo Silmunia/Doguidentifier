@@ -9,7 +9,7 @@ import UIKit
 
 class PhotoQuantitySetter: UIView {
 
-	var photoQuantity = 15
+	private var photoQuantity = 15
 
 	lazy var buttonBackground: UIImageView = {
 		let background = UIImageView()
@@ -75,7 +75,6 @@ class PhotoQuantitySetter: UIView {
 	lazy var downSetButton: UIButton = {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
-		button.addTarget(self, action: #selector(self.reduceQuantity), for: .touchUpInside)
 		self.addSubview(button)
 		return button
 	}()
@@ -92,7 +91,6 @@ class PhotoQuantitySetter: UIView {
 	lazy var upSetButton: UIButton = {
 		let button = UIButton()
 		button.translatesAutoresizingMaskIntoConstraints = false
-		button.addTarget(self, action: #selector(self.increaseCount), for: .touchUpInside)
 		self.addSubview(button)
 		return button
 	}()
@@ -152,18 +150,34 @@ class PhotoQuantitySetter: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	@objc func increaseCount() {
-		if photoQuantity < 25 {
-			photoQuantity += 5
-			numberLabel.text = String(photoQuantity)
-		}
+	func increaseQuantity() {
+		photoQuantity += 5
+		numberLabel.text = String(photoQuantity)
 	}
 
-	@objc func reduceQuantity() {
-		if photoQuantity > 5 {
-			photoQuantity -= 5
-			numberLabel.text = String(photoQuantity)
-		}
+	func reduceQuantity() {
+		photoQuantity -= 5
+		numberLabel.text = String(photoQuantity)
+	}
+
+	func getQuantity() -> Int {
+		return photoQuantity
+	}
+
+	func hideDownButton() {
+		downSetImage.isHidden = true
+	}
+
+	func showDownButton() {
+		downSetImage.isHidden = false
+	}
+
+	func hideUpButton() {
+		upSetImage.isHidden = true
+	}
+
+	func showUpButton() {
+		upSetImage.isHidden = false
 	}
 
 }

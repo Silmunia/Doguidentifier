@@ -27,6 +27,7 @@
 		9291662825D5642D00922800 /* ErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291662725D5642D00922800 /* ErrorMock.swift */; };
 		9291665925D5716800922800 /* BreedList+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291665225D5716400922800 /* BreedList+CoreDataClass.swift */; };
 		9291666E25D5730700922800 /* StartScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291666D25D5730700922800 /* StartScreenViewModel.swift */; };
+		9291667725D574DF00922800 /* BreedListDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9291667625D574DF00922800 /* BreedListDecoding.swift */; };
 		92E0C83D25D1B262003EE40C /* PhotoQuantitySetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E0C83C25D1B262003EE40C /* PhotoQuantitySetter.swift */; };
 		92E18DA025D159710005E327 /* StartScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E18D9F25D159710005E327 /* StartScreenViewController.swift */; };
 		92EEF61925D3F63B00BCF6A5 /* ChoiceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EEF61825D3F63B00BCF6A5 /* ChoiceResult.swift */; };
@@ -79,6 +80,7 @@
 		9291662725D5642D00922800 /* ErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMock.swift; sourceTree = "<group>"; };
 		9291665225D5716400922800 /* BreedList+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BreedList+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9291666D25D5730700922800 /* StartScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StartScreenViewModel.swift; path = "Doguidentifier/View Model/StartScreenViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		9291667625D574DF00922800 /* BreedListDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedListDecoding.swift; sourceTree = "<group>"; };
 		92E0C83C25D1B262003EE40C /* PhotoQuantitySetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoQuantitySetter.swift; sourceTree = "<group>"; };
 		92E18D9F25D159710005E327 /* StartScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenViewController.swift; sourceTree = "<group>"; };
 		92EEF61825D3F63B00BCF6A5 /* ChoiceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceResult.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				9206A00825D4A43600148D68 /* ServiceAPI.swift */,
 				9206A02325D4B84C00148D68 /* ImageDecoding.swift */,
 				9291662225D5566A00922800 /* ErrorAPI.swift */,
+				9291667625D574DF00922800 /* BreedListDecoding.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				9259FAA025D2B6B60097128F /* PerformanceInfo.swift in Sources */,
 				92766E2D25D16B5100A5C7F2 /* ImageExtensions.swift in Sources */,
 				92766E3E25D1882A00A5C7F2 /* DogButton.swift in Sources */,
+				9291667725D574DF00922800 /* BreedListDecoding.swift in Sources */,
 				92FD34E525CC3D24001D154D /* Doguidentifier.xcdatamodeld in Sources */,
 				92766E3825D17F7C00A5C7F2 /* ColorExtensions.swift in Sources */,
 				92FD34DB25CC3D24001D154D /* AppDelegate.swift in Sources */,

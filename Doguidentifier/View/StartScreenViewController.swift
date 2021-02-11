@@ -9,6 +9,8 @@ import UIKit
 
 class StartScreenViewController: UIViewController {
 
+	private var startScreenViewModel: StartScreenViewModel!
+
 	lazy var titleImage: UIImageView = {
 		let imgView = UIImageView()
 		imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,6 +50,8 @@ class StartScreenViewController: UIViewController {
 			fillColor: UIColor.dogPurple,
 			borderColor: UIColor.dogPalePurple
 		)
+		setter.upSetButton.addTarget(self, action: #selector(self.increaseQuantity), for: .touchUpInside)
+		setter.downSetButton.addTarget(self, action: #selector(self.reduceQuantity), for: .touchUpInside)
 		setter.translatesAutoresizingMaskIntoConstraints = false
 		return setter
 	}()
@@ -75,6 +79,8 @@ class StartScreenViewController: UIViewController {
 //		}
 
 		configureLayout()
+
+		callToGetBreedList()
     }
 
 	private func configureLayout() {
@@ -100,6 +106,42 @@ class StartScreenViewController: UIViewController {
 			startButton.topAnchor.constraint(equalTo: numPhotoSetter.bottomAnchor, constant: 40),
 			startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
 		])
+	}
+
+	private func callToGetBreedList() {
+
+		self.startScreenViewModel = StartScreenViewModel()
+		self.startScreenViewModel.bindStartScreenVMToController = {}
+	}
+
+	@objc func increaseQuantity() {
+		var quantity = numPhotoSetter.getQuantity()
+
+		if quantity < 25 {
+			numPhotoSetter.increaseQuantity()
+			quantity = numPhotoSetter.getQuantity()
+
+			if quantity == 25 {
+				numPhotoSetter.hideUpButton()
+			} else if quantity == 10 {
+				numPhotoSetter.showDownButton()
+			}
+		}
+	}
+
+	@objc func reduceQuantity() {
+		var quantity = numPhotoSetter.getQuantity()
+
+		if quantity > 5 {
+			numPhotoSetter.reduceQuantity()
+			quantity = numPhotoSetter.getQuantity()
+
+			if quantity == 5 {
+				numPhotoSetter.hideDownButton()
+			} else if quantity == 20 {
+				numPhotoSetter.showUpButton()
+			}
+		}
 	}
 
 	@objc func toGameScreen() {
