@@ -14,14 +14,14 @@ class StartScreenViewModel: NSObject {
 	let dataContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	// swiftlint:enable force_cast
 
-	var breedListToController: (() -> Void) = {}
+	var bindBreedListToController: (() -> Void) = {}
 
-	var imageListToController: (() -> Void) = {}
+	var bindImageListToController: (() -> Void) = {}
 
 	private(set) var breedList: [String: [String]]! {
 		didSet {
 			updateBreedList()
-			self.breedListToController()
+			self.bindBreedListToController()
 		}
 	}
 
@@ -29,7 +29,7 @@ class StartScreenViewModel: NSObject {
 		didSet {
 			if self.imageList.count == self.imageAmountRequested {
 				self.imageAmountRequested = 0
-				self.imageListToController()
+				self.bindImageListToController()
 				self.storeImages()
 			} else {
 				requestImages()
@@ -190,11 +190,9 @@ class StartScreenViewModel: NSObject {
 	private func storeImages() {
 
 		if let savedImages = fetchImageContainer() {
-			print("OLD IMAGE CONTAINER")
 			let foundImages = savedImages[0]
 			foundImages.imagesList = self.imageList
 		} else {
-			print("NEW IMAGE CONTAINER")
 			let newImages = ImageContainer(context: self.dataContext)
 			newImages.imagesList = self.imageList
 		}

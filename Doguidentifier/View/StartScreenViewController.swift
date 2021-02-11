@@ -33,8 +33,8 @@ class StartScreenViewController: UIViewController {
 		let button = DogButton(
 			width: 250,
 			height: 90,
-			text: "Preparar",
-			fontSize: 48,
+			text: "Prepare Photos",
+			fontSize: 42,
 			fillColor: UIColor.dogNavy,
 			borderColor: UIColor.dogPaleNavy
 		)
@@ -47,7 +47,7 @@ class StartScreenViewController: UIViewController {
 		let button = DogButton(
 			width: 250,
 			height: 90,
-			text: "Jogar",
+			text: "Play",
 			fontSize: 48,
 			fillColor: UIColor.dogGreen,
 			borderColor: UIColor.dogWhite
@@ -72,10 +72,10 @@ class StartScreenViewController: UIViewController {
 
 	lazy var loadingWarning: TextDisplay = {
 		let text = TextDisplay(
-			width: 300,
-			height: 90,
+			width: 320,
+			height: 100,
 			fontSize: 42,
-			text: "Carregando...",
+			text: "Loading...",
 			fillColor: UIColor.dogPurple,
 			borderColor: UIColor.dogPalePurple
 		)
@@ -131,7 +131,7 @@ class StartScreenViewController: UIViewController {
 	private func callToGetBreedList() {
 
 		self.startScreenViewModel = StartScreenViewModel()
-		self.startScreenViewModel.breedListToController = {}
+		self.startScreenViewModel.bindBreedListToController = {}
 	}
 
 	@objc func increaseQuantity() {
@@ -171,7 +171,7 @@ class StartScreenViewController: UIViewController {
 		numPhotoSetter.isHidden = true
 		loadingWarning.isHidden = false
 
-		startScreenViewModel.imageListToController = {
+		startScreenViewModel.bindImageListToController = {
 			self.gameReady()
 		}
 	}

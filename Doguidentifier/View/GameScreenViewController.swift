@@ -9,6 +9,8 @@ import UIKit
 
 class GameScreenViewController: UIViewController {
 
+	private var gameScreenViewModel: GameScreenViewModel!
+
 	lazy var screenBackground: UIImageView = {
 		let imgView = UIImageView()
 		imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +37,7 @@ class GameScreenViewController: UIViewController {
 		let button = DogButton(
 			width: 150,
 			height: 60,
-			text: "Sair",
+			text: "Exit",
 			fontSize: 32,
 			fillColor: UIColor.dogRed,
 			borderColor: UIColor.dogWhite
@@ -52,9 +54,9 @@ class GameScreenViewController: UIViewController {
 
 	lazy var dogOptions: DogOptions = {
 		let options = DogOptions(options: [
-									"Staffordshire Bullterrier",
-									"German Longhaired Pointer",
-									"Shetland Sheepdog", "Dalmatian"
+									"Some Dog",
+									"Another Dog With a Very Big Name",
+									"A Third Dog Here", "Small Dog"
 		])
 		options.translatesAutoresizingMaskIntoConstraints = false
 		return options
@@ -72,6 +74,8 @@ class GameScreenViewController: UIViewController {
 		self.navigationController?.navigationBar.barStyle = .black
 
 		configureLayout()
+
+		callToLoadImages()
 
 		choiceResult.isHidden = true
 
@@ -118,6 +122,18 @@ class GameScreenViewController: UIViewController {
 			dogOptions.topAnchor.constraint(equalTo: dogPhoto.bottomAnchor, constant: 50),
 			dogOptions.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
 		])
+	}
+
+	private func callToLoadImages() {
+		self.gameScreenViewModel = GameScreenViewModel()
+		self.gameScreenViewModel.bindImageListToController = {
+			self.LoadPhotoToIdentify()
+		}
+	}
+	
+	private func LoadPhotoToIdentify() {
+		
+		//dogPhoto.photoView.image = self.gameScreenViewModel
 	}
 
 	@objc func correctChoice() {

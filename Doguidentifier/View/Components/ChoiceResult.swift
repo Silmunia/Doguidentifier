@@ -14,7 +14,7 @@ class ChoiceResult: UIView {
 			width: 255,
 			height: 65,
 			fontSize: 42,
-			text: "Resultado",
+			text: "Result",
 			fillColor: UIColor.dogNavy,
 			borderColor: UIColor.dogPaleNavy
 		)
@@ -55,7 +55,7 @@ class ChoiceResult: UIView {
 		let button = DogButton(
 			width: 190,
 			height: 60,
-			text: "Próxima",
+			text: "Next",
 			fontSize: 36,
 			fillColor: UIColor.dogYellow,
 			borderColor: UIColor.dogWhite
@@ -103,7 +103,7 @@ class ChoiceResult: UIView {
 
 	public func setResultLayout(is result: Bool, species: String) {
 		if result {
-			resultTitle.textLabel.text = "Correto!"
+			resultTitle.textLabel.text = "Correct!"
 			photoAnswer.textLabel.text = species
 
 			photoAnswer.buttonBackground.image = UIImage.imageWithColor(color: UIColor.dogGreen)
@@ -112,7 +112,7 @@ class ChoiceResult: UIView {
 			leftDogImage.image = UIImage(named: "YellowDogHappy")
 			rightDogImage.image = UIImage(named: "WhiteDogHappy")
 		} else {
-			resultTitle.textLabel.text = "Errado!"
+			resultTitle.textLabel.text = "Wrong!"
 			photoAnswer.textLabel.text = species
 
 			photoAnswer.buttonBackground.image = UIImage.imageWithColor(color: UIColor.dogRed)

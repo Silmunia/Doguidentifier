@@ -40,7 +40,7 @@ class ResultScreenViewController: UIViewController {
 	lazy var bestPerformance: PerformanceInfo = {
 		let performance = PerformanceInfo(
 			imageName: "Paw",
-			title: "Mais Acertos",
+			title: "Most Hits",
 			dogSpecies: "German Longhaired Pointer"
 		)
 		performance.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ class ResultScreenViewController: UIViewController {
 	lazy var worstPerformance: PerformanceInfo = {
 		let performance = PerformanceInfo(
 			imageName: "Question",
-			title: "Menos Acertos",
+			title: "Least Hits",
 			dogSpecies: "German Longhaired Pointer"
 		)
 		performance.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +61,7 @@ class ResultScreenViewController: UIViewController {
 		let button = DogButton(
 			width: 180,
 			height: 70,
-			text: "Repetir",
+			text: "Repeat",
 			fontSize: 42,
 			fillColor: UIColor.dogGreen,
 			borderColor: UIColor.dogWhite
@@ -75,7 +75,7 @@ class ResultScreenViewController: UIViewController {
 		let button = DogButton(
 			width: 180,
 			height: 70,
-			text: "Sair",
+			text: "Exit",
 			fontSize: 42,
 			fillColor: UIColor.dogRed,
 			borderColor: UIColor.dogWhite
