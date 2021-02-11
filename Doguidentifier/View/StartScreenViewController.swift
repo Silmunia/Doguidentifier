@@ -69,7 +69,7 @@ class StartScreenViewController: UIViewController {
 		setter.translatesAutoresizingMaskIntoConstraints = false
 		return setter
 	}()
-	
+
 	lazy var loadingWarning: TextDisplay = {
 		let text = TextDisplay(
 			width: 300,
@@ -122,7 +122,7 @@ class StartScreenViewController: UIViewController {
 
 			prepareButton.topAnchor.constraint(equalTo: numPhotoSetter.bottomAnchor, constant: 40),
 			prepareButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-			
+
 			loadingWarning.topAnchor.constraint(equalTo: titleImage.bottomAnchor, constant: 75),
 			loadingWarning.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
 		])
