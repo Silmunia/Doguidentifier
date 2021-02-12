@@ -29,25 +29,11 @@ class StartScreenViewController: UIViewController {
 		return imgView
 	}()
 
-	lazy var prepareButton: DogButton = {
-		let button = DogButton(
-			width: 250,
-			height: 90,
-			text: "Preparar",
-			fontSize: 48,
-			fillColor: UIColor.dogNavy,
-			borderColor: UIColor.dogPaleNavy
-		)
-		button.translatesAutoresizingMaskIntoConstraints = false
-		button.button.addTarget(self, action: #selector(self.prepareStartGame), for: .touchUpInside)
-		return button
-	}()
-
 	lazy var startButton: DogButton = {
 		let button = DogButton(
 			width: 250,
 			height: 90,
-			text: "Jogar",
+			text: "Play",
 			fontSize: 48,
 			fillColor: UIColor.dogGreen,
 			borderColor: UIColor.dogWhite
@@ -70,27 +56,11 @@ class StartScreenViewController: UIViewController {
 		return setter
 	}()
 
-	lazy var loadingWarning: TextDisplay = {
-		let text = TextDisplay(
-			width: 300,
-			height: 90,
-			fontSize: 42,
-			text: "Carregando...",
-			fillColor: UIColor.dogPurple,
-			borderColor: UIColor.dogPalePurple
-		)
-		text.translatesAutoresizingMaskIntoConstraints = false
-		return text
-	}()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.view.backgroundColor = UIColor.dogYellow
 
 		configureLayout()
-
-		startButton.isHidden = true
-		loadingWarning.isHidden = true
 
 		callToGetBreedList()
     }
@@ -100,8 +70,6 @@ class StartScreenViewController: UIViewController {
 		self.view.addSubview(titleImage)
 		self.view.addSubview(numPhotoSetter)
 		self.view.addSubview(startButton)
-		self.view.addSubview(prepareButton)
-		self.view.addSubview(loadingWarning)
 
 		NSLayoutConstraint.activate([
 			screenBackground.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -118,20 +86,15 @@ class StartScreenViewController: UIViewController {
 			numPhotoSetter.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 
 			startButton.topAnchor.constraint(equalTo: numPhotoSetter.bottomAnchor, constant: 40),
-			startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+			startButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
 
-			prepareButton.topAnchor.constraint(equalTo: numPhotoSetter.bottomAnchor, constant: 40),
-			prepareButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-
-			loadingWarning.topAnchor.constraint(equalTo: titleImage.bottomAnchor, constant: 75),
-			loadingWarning.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
 		])
 	}
 
 	private func callToGetBreedList() {
 
 		self.startScreenViewModel = StartScreenViewModel()
-		self.startScreenViewModel.breedListToController = {}
+		self.startScreenViewModel.bindBreedListToController = {}
 	}
 
 	@objc func increaseQuantity() {
@@ -164,25 +127,10 @@ class StartScreenViewController: UIViewController {
 		}
 	}
 
-	@objc func prepareStartGame() {
-
-		startScreenViewModel.getBreedImages(quantity: numPhotoSetter.getQuantity())
-		prepareButton.isHidden = true
-		numPhotoSetter.isHidden = true
-		loadingWarning.isHidden = false
-
-		startScreenViewModel.imageListToController = {
-			self.gameReady()
-		}
-	}
-
-	private func gameReady() {
-		startButton.isHidden = false
-		loadingWarning.isHidden = true
-	}
-
 	@objc func startGame() {
-		self.navigationController?.pushViewController(GameScreenViewController(), animated: true)
+		let gameScreen = GameScreenViewController()
+		gameScreen.setPhotoCounter(totalPhotos: numPhotoSetter.getQuantity())
+		self.navigationController?.pushViewController(gameScreen, animated: true)
 	}
 
 }

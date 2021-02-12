@@ -61,4 +61,8 @@ class DogPhoto: UIView {
 		])
 	}
 
+	func setPhoto(image: UIImage) {
+		photoView.image = image
+	}
+
 }
