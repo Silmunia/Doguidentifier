@@ -9,14 +9,12 @@ import UIKit
 
 class ChoiceResult: UIView {
 
-	private var breedAnswer: String!
-
 	lazy var resultTitle: TextDisplay = {
 		let title = TextDisplay(
 			width: 255,
 			height: 65,
 			fontSize: 42,
-			text: "Result",
+			text: "Resultado",
 			fillColor: UIColor.dogNavy,
 			borderColor: UIColor.dogPaleNavy
 		)
@@ -57,7 +55,7 @@ class ChoiceResult: UIView {
 		let button = DogButton(
 			width: 190,
 			height: 60,
-			text: "Next",
+			text: "Próxima",
 			fontSize: 36,
 			fillColor: UIColor.dogYellow,
 			borderColor: UIColor.dogWhite
@@ -103,14 +101,10 @@ class ChoiceResult: UIView {
 		])
 	}
 
-	public func setBreedAnswer(name: String) {
-		breedAnswer = name
-	}
-
-	public func setResultLayout(correct: Bool) {
-		if correct {
-			resultTitle.textLabel.text = "Correct!"
-			photoAnswer.textLabel.text = breedAnswer
+	public func setResultLayout(is result: Bool, species: String) {
+		if result {
+			resultTitle.textLabel.text = "Correto!"
+			photoAnswer.textLabel.text = species
 
 			photoAnswer.buttonBackground.image = UIImage.imageWithColor(color: UIColor.dogGreen)
 			photoAnswer.buttonBackground.layer.borderColor = UIColor.dogPaleGreen.cgColor
@@ -118,8 +112,8 @@ class ChoiceResult: UIView {
 			leftDogImage.image = UIImage(named: "YellowDogHappy")
 			rightDogImage.image = UIImage(named: "WhiteDogHappy")
 		} else {
-			resultTitle.textLabel.text = "Wrong!"
-			photoAnswer.textLabel.text = breedAnswer
+			resultTitle.textLabel.text = "Errado!"
+			photoAnswer.textLabel.text = species
 
 			photoAnswer.buttonBackground.image = UIImage.imageWithColor(color: UIColor.dogRed)
 			photoAnswer.buttonBackground.layer.borderColor = UIColor.dogPaleRed.cgColor
@@ -134,7 +128,7 @@ class ChoiceResult: UIView {
 		var leftDogMargin: CGFloat = 40
 		var leftDogY: CGFloat = -10
 
-		if !correct {
+		if !result {
 			rightDogSize = 100
 			rightDogMargin = -35
 			leftDogSize = 150
