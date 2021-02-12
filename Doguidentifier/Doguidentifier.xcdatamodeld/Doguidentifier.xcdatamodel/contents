@@ -3,7 +3,11 @@
     <entity name="BreedList" representedClassName="BreedList" syncable="YES" codeGenerationType="category">
         <attribute name="list" optional="YES" attributeType="Transformable" customClassName="[String: [String]]"/>
     </entity>
+    <entity name="ImageContainer" representedClassName="ImageContainer" syncable="YES" codeGenerationType="category">
+        <attribute name="imagesList" optional="YES" attributeType="Transformable" customClassName="[String: String]"/>
+    </entity>
     <elements>
         <element name="BreedList" positionX="-45" positionY="0" width="128" height="58"/>
+        <element name="ImageContainer" positionX="-18" positionY="36" width="128" height="58"/>
     </elements>
 </model>

@@ -47,7 +47,7 @@ class DogButton: UIView {
 
 		label.numberOfLines = 0
 		label.lineBreakMode = .byWordWrapping
-		label.attributedText = NSAttributedString(string: "Play", attributes: strokeTextAttributes)
+		label.attributedText = NSAttributedString(string: "Jogar", attributes: strokeTextAttributes)
 
 		return label
 	}()
