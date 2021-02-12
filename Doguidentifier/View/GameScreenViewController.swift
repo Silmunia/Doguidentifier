@@ -75,8 +75,6 @@ class GameScreenViewController: UIViewController {
 
 		configureLayout()
 
-		callToLoadImages()
-
 		choiceResult.isHidden = true
 
 		dogOptions.firstOption.button.addTarget(self, action: #selector(self.correctChoice), for: .touchUpInside)
@@ -87,6 +85,8 @@ class GameScreenViewController: UIViewController {
 		choiceResult.nextButton.button.addTarget(self, action: #selector(self.toResultScreen), for: .touchUpInside)
 
 		super.view.backgroundColor = UIColor.dogPurple
+		
+		callToLoadImages()
     }
 
 	override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -127,13 +127,21 @@ class GameScreenViewController: UIViewController {
 	private func callToLoadImages() {
 		self.gameScreenViewModel = GameScreenViewModel()
 		self.gameScreenViewModel.bindImageListToController = {
-			self.LoadPhotoToIdentify()
+			print("Bora filho")
+			self.loadPhotoToIdentify()
 		}
 	}
-	
-	private func LoadPhotoToIdentify() {
-		
-		//dogPhoto.photoView.image = self.gameScreenViewModel
+
+	func loadPhotoToIdentify() {
+
+		print("bora")
+
+		let imagePicked = gameScreenViewModel.loadImageToGame()
+
+		print("zzzz")
+
+		dogPhoto.photoView.image = imagePicked.image
+		dogPhoto.isHidden = false
 	}
 
 	@objc func correctChoice() {
