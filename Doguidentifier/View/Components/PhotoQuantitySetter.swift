@@ -38,7 +38,7 @@ class PhotoQuantitySetter: UIView {
 			.strokeWidth: -3.0
 			]
 
-		label.attributedText = NSAttributedString(string: "Nº Photos", attributes: strokeTextAttributes)
+		label.attributedText = NSAttributedString(string: "Nº Fotos", attributes: strokeTextAttributes)
 		self.addSubview(label)
 		return label
 	}()

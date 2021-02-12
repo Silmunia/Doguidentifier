@@ -11,7 +11,7 @@ class DogOptions: UIView {
 
 	var optionsWidth: CGFloat = 175
 	var optionsHeight: CGFloat = 120
-	var optionsFont: CGFloat = 20
+	var optionsFont: CGFloat = 22
 
 	lazy var firstOption: DogButton = {
 		let button = DogButton(
@@ -75,34 +75,20 @@ class DogOptions: UIView {
 		super.init(frame: .zero)
 
 		configureLayout()
-
-		optionsArray = [firstOption, secondOption, thirdOption, fourthOption]
-
-		for index in 0..<4 {
-			optionsArray[index].buttonLabel.text = options[index]
-		}
+		setDogOptions(options: options)
 	}
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	func setDogOptions(options: [String], correctBreed: String) -> Int {
+	private func setDogOptions(options: [String]) {
 
-		var availableOptions = options
-		availableOptions.shuffle()
-
-		var correctIndex = 5
+		optionsArray = [firstOption, secondOption, thirdOption, fourthOption]
 
 		for index in 0..<4 {
-			optionsArray[index].buttonLabel.text = availableOptions[index]
-
-			if availableOptions[index] == correctBreed {
-				correctIndex = index
-			}
+			optionsArray[index].buttonLabel.text = options[index]
 		}
-
-		return correctIndex
 	}
 
 	private func configureLayout() {

@@ -46,7 +46,7 @@ class PerformanceInfo: UIView {
 			.strokeWidth: -3.0
 			]
 
-		label.attributedText = NSAttributedString(string: "Title Label", attributes: strokeTextAttributes)
+		label.attributedText = NSAttributedString(string: "Mais Acertos", attributes: strokeTextAttributes)
 		self.addSubview(label)
 		return label
 	}()
@@ -66,7 +66,7 @@ class PerformanceInfo: UIView {
 			.strokeWidth: -3.0
 			]
 
-		label.attributedText = NSAttributedString(string: "Dog Name", attributes: strokeTextAttributes)
+		label.attributedText = NSAttributedString(string: "German Longhaired Pointer", attributes: strokeTextAttributes)
 		label.numberOfLines = 0
 		label.lineBreakMode = .byWordWrapping
 		self.addSubview(label)
