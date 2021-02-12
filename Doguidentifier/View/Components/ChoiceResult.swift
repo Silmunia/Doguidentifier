@@ -9,6 +9,8 @@ import UIKit
 
 class ChoiceResult: UIView {
 
+	private var breedAnswer: String!
+
 	lazy var resultTitle: TextDisplay = {
 		let title = TextDisplay(
 			width: 255,
@@ -101,10 +103,14 @@ class ChoiceResult: UIView {
 		])
 	}
 
-	public func setResultLayout(is result: Bool, species: String) {
-		if result {
+	public func setBreedAnswer(name: String) {
+		breedAnswer = name
+	}
+
+	public func setResultLayout(correct: Bool) {
+		if correct {
 			resultTitle.textLabel.text = "Correct!"
-			photoAnswer.textLabel.text = species
+			photoAnswer.textLabel.text = breedAnswer
 
 			photoAnswer.buttonBackground.image = UIImage.imageWithColor(color: UIColor.dogGreen)
 			photoAnswer.buttonBackground.layer.borderColor = UIColor.dogPaleGreen.cgColor
@@ -113,7 +119,7 @@ class ChoiceResult: UIView {
 			rightDogImage.image = UIImage(named: "WhiteDogHappy")
 		} else {
 			resultTitle.textLabel.text = "Wrong!"
-			photoAnswer.textLabel.text = species
+			photoAnswer.textLabel.text = breedAnswer
 
 			photoAnswer.buttonBackground.image = UIImage.imageWithColor(color: UIColor.dogRed)
 			photoAnswer.buttonBackground.layer.borderColor = UIColor.dogPaleRed.cgColor
@@ -128,7 +134,7 @@ class ChoiceResult: UIView {
 		var leftDogMargin: CGFloat = 40
 		var leftDogY: CGFloat = -10
 
-		if !result {
+		if !correct {
 			rightDogSize = 100
 			rightDogMargin = -35
 			leftDogSize = 150

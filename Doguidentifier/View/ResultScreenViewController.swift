@@ -51,7 +51,7 @@ class ResultScreenViewController: UIViewController {
 		let performance = PerformanceInfo(
 			imageName: "Question",
 			title: "Least Hits",
-			dogSpecies: "German Longhaired Pointer"
+			dogSpecies: "Bluetick"
 		)
 		performance.translatesAutoresizingMaskIntoConstraints = false
 		return performance
