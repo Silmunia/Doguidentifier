@@ -77,8 +77,6 @@ class GameScreenViewModel: NSObject {
 
 		var formatedName = ""
 
-		print("indo")
-
 		switch rawName {
 		case "affenpinscher":
 			formatedName = "Affenpinscher"
@@ -95,7 +93,7 @@ class GameScreenViewModel: NSObject {
 		case "basenji":
 			formatedName = "Basenji"
 		case "beagle":
-			formatedName = "Bluetick"
+			formatedName = "Beagle"
 		case "bluetick":
 			formatedName = "Bluetick"
 		case "borzoi":
@@ -103,6 +101,8 @@ class GameScreenViewModel: NSObject {
 		case "bouvier":
 			formatedName = "Bouvier"
 		case "boxer":
+			formatedName = "Boxer"
+		case "brabancon":
 			formatedName = "Brabancon"
 		case "briard":
 			formatedName = "Briard"

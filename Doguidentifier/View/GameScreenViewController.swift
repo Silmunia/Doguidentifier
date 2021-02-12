@@ -11,6 +11,8 @@ class GameScreenViewController: UIViewController {
 
 	private var gameScreenViewModel: GameScreenViewModel!
 
+	private var dogImages: [String: UIImage]!
+
 	lazy var screenBackground: UIImageView = {
 		let imgView = UIImageView()
 		imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -84,13 +86,19 @@ class GameScreenViewController: UIViewController {
 
 		choiceResult.nextButton.button.addTarget(self, action: #selector(self.toResultScreen), for: .touchUpInside)
 
+		dogPhoto.photoView.image = dogImages.randomElement()?.value
+
 		super.view.backgroundColor = UIColor.dogPurple
-		
-		callToLoadImages()
+
+		//callToLoadImages()
     }
 
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
+	}
+
+	public func setImages(images: [String: UIImage]) {
+		dogImages = images
 	}
 
 	private func configureLayout() {
@@ -125,8 +133,8 @@ class GameScreenViewController: UIViewController {
 	}
 
 	private func callToLoadImages() {
-		self.gameScreenViewModel = GameScreenViewModel()
-		self.gameScreenViewModel.bindImageListToController = {
+		gameScreenViewModel = GameScreenViewModel()
+		gameScreenViewModel.bindImageListToController = {
 			print("Bora filho")
 			self.loadPhotoToIdentify()
 		}

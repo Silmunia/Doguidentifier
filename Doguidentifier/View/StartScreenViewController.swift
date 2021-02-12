@@ -171,7 +171,7 @@ class StartScreenViewController: UIViewController {
 		numPhotoSetter.isHidden = true
 		loadingWarning.isHidden = false
 
-		startScreenViewModel.bindImageListToController = {
+		startScreenViewModel.bindReadyImagesToController = {
 			self.gameReady()
 		}
 	}
@@ -182,7 +182,9 @@ class StartScreenViewController: UIViewController {
 	}
 
 	@objc func startGame() {
-		self.navigationController?.pushViewController(GameScreenViewController(), animated: true)
+		let nextScreen = GameScreenViewController()
+		nextScreen.setImages(images: startScreenViewModel.getReadyImages())
+		self.navigationController?.pushViewController(nextScreen, animated: true)
 	}
 
 }
