@@ -8,67 +8,185 @@
 import UIKit
 import CoreData
 
+// swiftlint:disable:next type_body_length
 class GameScreenViewModel: NSObject {
 
 	// swiftlint:disable force_cast
 	let dataContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	// swiftlint:enable force_cast
 
-	var bindImageListToController: (() -> Void) = {}
+	var bindReadyImageToController: (() -> Void) = {}
 
-	private(set) var imageList: [String: String]! {
+	private(set) var readyImage: (breed: String, image: UIImage)! {
 		didSet {
-			self.bindImageListToController()
+			self.bindReadyImageToController()
+		}
+	}
+
+	private(set) var rawImage: (breed: String, imageString: String)! {
+		didSet {
+			self.prepareImageOptions()
+		}
+	}
+
+	private var breedOptions: [String]!
+
+	private(set) var breedList: [String: [String]]! {
+		didSet {
+			self.requestImageToGame()
 		}
 	}
 
 	override init() {
 		super.init()
 
-		loadImageContainer()
+		updateBreedList()
 	}
 
-	func loadImageToGame() -> (breed: String, image: UIImage) {
+	private func prepareImageOptions() {
 
-		let chosenImage = imageList.randomElement()
+		let formatedBreed = formatBreedName(rawName: rawImage.breed)
+		let loadedImage = getImageFromURL(imageURL: rawImage.imageString)!
 
-		let breed = chosenImage!.key
-		let imageURL = chosenImage!.value
+		self.breedOptions = getRandomBreedOptions(exception: rawImage.breed)
 
-		imageList.removeValue(forKey: breed)
-
-		print("ok")
-
-		let formatedBreed = formatBreedName(rawName: breed)
-		let loadedImage = getImageFromURL(imageURL: imageURL)!
-
-		let loadedData = (formatedBreed, loadedImage)
-
-		return loadedData
+		self.readyImage = (formatedBreed, loadedImage)
 	}
 
-	private func loadImageContainer() {
-		if let savedImages = fetchImageContainer() {
-			let foundImages = savedImages[0]
-			self.imageList = foundImages.imagesList
+	private func getRandomBreedOptions(exception: String) -> [String] {
+
+		var tempList = breedList
+		var breedCode = ""
+		var options: [String] = []
+
+		while options.count != 3 {
+			if let chosenBreed = tempList?.randomElement()! {
+
+				let master = chosenBreed.key
+				breedCode += master
+
+				if chosenBreed.value.count != 0 {
+
+					let subBreed = chosenBreed.value.randomElement()!
+					breedCode += "-\(subBreed)"
+				}
+
+				tempList?.removeValue(forKey: master)
+
+				if breedCode == exception {
+					continue
+				} else {
+					options.append(formatBreedName(rawName: breedCode))
+					breedCode = ""
+				}
+			}
+		}
+
+		return options
+	}
+
+	func sendImageDataToGame() -> (breed: String, image: UIImage) {
+		return readyImage
+	}
+
+	func sendRandomBreedsToGame() -> [String] {
+		return breedOptions
+	}
+
+	private func requestImageToGame() {
+		if let breedList = fetchBreedList()?[0] {
+
+			var breedName = ""
+
+			if let chosenBreed = breedList.list?.randomElement() {
+
+				let masterBreed = chosenBreed.key
+				var subBreed = ""
+				breedName = masterBreed
+
+				if chosenBreed.value.count != 0 {
+
+					subBreed = chosenBreed.value.randomElement()!
+					breedName += "-" + subBreed
+
+					ServiceAPI.request(router: RouterAPI.getSubBreedImage(
+						master: masterBreed,
+						sub: subBreed
+					)) { result in
+
+						switch result {
+						case .success(let data):
+							do {
+								if let validData = data {
+									let decodedMessage = try JSONDecoder().decode(GetImage.self, from: validData)
+									self.rawImage = (breedName, decodedMessage.message)
+								}
+							} catch {
+								print(error)
+								return
+							}
+						case .failure(let error):
+							print(error)
+						}
+					}
+				} else {
+
+					ServiceAPI.request(router: RouterAPI.getMasterBreedImage(master: masterBreed)) { result in
+
+						switch result {
+						case .success(let data):
+							do {
+								if let validData = data {
+									let decodedMessage = try JSONDecoder().decode(GetImage.self, from: validData)
+									self.rawImage = (breedName, decodedMessage.message)
+								}
+							} catch {
+								print(error)
+								return
+							}
+						case .failure(let error):
+							print(error)
+						}
+					}
+				}
+			}
+
 		} else {
-			fatalError("Invalid IMAGE CONTAINER DATA in data model!")
+			print("UNABLE to get BREED LIST from DATA")
 		}
 	}
 
-	private func fetchImageContainer() -> [ImageContainer]? {
-		let fetch = ImageContainer.fetchRequest() as NSFetchRequest<ImageContainer>
-		var foundContainer: [ImageContainer]?
+	private func fetchBreedList() -> [BreedList]? {
+		let fetch = BreedList.fetchRequest() as NSFetchRequest<BreedList>
+		var foundList: [BreedList]?
 		do {
-			foundContainer = try dataContext.fetch(fetch)
-			if foundContainer?.count == 0 {
-				foundContainer = nil
+			foundList = try dataContext.fetch(fetch)
+			if foundList?[0].list?.count == 0 {
+				foundList = nil
 			}
 		} catch {
-			fatalError("Unable to FETCH IMAGE CONTAINER DATA from data model!")
+			fatalError("Unable to FETCH BREED LIST DATA from data model!")
 		}
 
-		return foundContainer
+		return foundList
+	}
+
+	private func updateBreedList() {
+
+		if let savedList = fetchBreedList() {
+			let foundList = savedList[0]
+			self.breedList = foundList.list
+		} else {
+			let newList = BreedList(context: self.dataContext)
+			self.breedList = newList.list
+		}
+
+		do {
+			try dataContext.save()
+		} catch {
+			fatalError("Unable to SAVE BREED LIST DATA to data model!")
+		}
+
 	}
 
 	// swiftlint:disable cyclomatic_complexity
