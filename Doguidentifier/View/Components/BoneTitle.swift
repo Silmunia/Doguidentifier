@@ -31,7 +31,7 @@ class BoneTitle: UIView {
 			.strokeWidth: -3.0
 			]
 
-		label.attributedText = NSAttributedString(string: "Resultado", attributes: strokeTextAttributes)
+		label.attributedText = NSAttributedString(string: "Result", attributes: strokeTextAttributes)
 		return label
 	}()
 

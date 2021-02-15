@@ -9,6 +9,10 @@ import UIKit
 
 class GameScreenViewController: UIViewController {
 
+	private var gameScreenViewModel: GameScreenViewModel!
+
+	private var photoCounter = (current: 99, total: 99)
+
 	lazy var screenBackground: UIImageView = {
 		let imgView = UIImageView()
 		imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +39,7 @@ class GameScreenViewController: UIViewController {
 		let button = DogButton(
 			width: 150,
 			height: 60,
-			text: "Sair",
+			text: "Exit",
 			fontSize: 32,
 			fillColor: UIColor.dogRed,
 			borderColor: UIColor.dogWhite
@@ -52,9 +56,9 @@ class GameScreenViewController: UIViewController {
 
 	lazy var dogOptions: DogOptions = {
 		let options = DogOptions(options: [
-									"Staffordshire Bullterrier",
-									"German Longhaired Pointer",
-									"Shetland Sheepdog", "Dalmatian"
+									"Some Dog",
+									"Another Dog With a Very Big Name",
+									"A Third Dog Here", "Small Dog"
 		])
 		options.translatesAutoresizingMaskIntoConstraints = false
 		return options
@@ -66,24 +70,35 @@ class GameScreenViewController: UIViewController {
 		return result
 	}()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	lazy var loadingWarning: TextDisplay = {
+		let text = TextDisplay(
+			width: 280,
+			height: 100,
+			fontSize: 42,
+			text: "Loading...",
+			fillColor: UIColor.dogNavy,
+			borderColor: UIColor.dogPaleNavy
+		)
+		text.translatesAutoresizingMaskIntoConstraints = false
+		return text
+	}()
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
 
 		self.navigationController?.navigationBar.barStyle = .black
 
 		configureLayout()
 
 		choiceResult.isHidden = true
-
-		dogOptions.firstOption.button.addTarget(self, action: #selector(self.correctChoice), for: .touchUpInside)
-		dogOptions.secondOption.button.addTarget(self, action: #selector(self.wrongChoice), for: .touchUpInside)
-		dogOptions.thirdOption.button.addTarget(self, action: #selector(self.wrongChoice), for: .touchUpInside)
-		dogOptions.fourthOption.button.addTarget(self, action: #selector(self.wrongChoice), for: .touchUpInside)
-
-		choiceResult.nextButton.button.addTarget(self, action: #selector(self.toResultScreen), for: .touchUpInside)
-
+		dogPhoto.isHidden = true
+		dogOptions.isHidden = true
 		super.view.backgroundColor = UIColor.dogPurple
-    }
+
+		exitButton.button.addTarget(self, action: #selector(self.toStartScreen), for: .touchUpInside)
+
+		callToLoadImages()
+	}
 
 	override var preferredStatusBarStyle: UIStatusBarStyle {
 		return .lightContent
@@ -96,6 +111,7 @@ class GameScreenViewController: UIViewController {
 		self.view.addSubview(dogPhoto)
 		self.view.addSubview(dogOptions)
 		self.view.addSubview(choiceResult)
+		self.view.addSubview(loadingWarning)
 
 		NSLayoutConstraint.activate([
 			screenBackground.topAnchor.constraint(equalTo: self.view.topAnchor),
@@ -116,24 +132,71 @@ class GameScreenViewController: UIViewController {
 			choiceResult.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
 
 			dogOptions.topAnchor.constraint(equalTo: dogPhoto.bottomAnchor, constant: 50),
-			dogOptions.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+			dogOptions.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+
+			loadingWarning.topAnchor.constraint(equalTo: exitButton.bottomAnchor, constant: 200),
+			loadingWarning.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
 		])
+	}
+
+	func setPhotoCounter(totalPhotos: Int) {
+		photoCounter.current = 0
+		photoCounter.total = totalPhotos
+		resultQuantity.setText(text: "\(photoCounter.current) / \(photoCounter.total)")
+	}
+
+	private func callToLoadImages() {
+		gameScreenViewModel = GameScreenViewModel()
+		gameScreenViewModel.bindReadyImageToController = {
+			let imageData = self.gameScreenViewModel.sendImageDataToGame()
+			var options = self.gameScreenViewModel.sendRandomBreedsToGame()
+			options.append(imageData.breed)
+			self.loadPhotoAndOptions(imageLoaded: imageData.image, breedOptions: options, correctBreed: imageData.breed)
+		}
+	}
+
+	func loadPhotoAndOptions(imageLoaded: UIImage, breedOptions: [String], correctBreed: String) {
+
+		DispatchQueue.main.sync {
+			dogPhoto.setPhoto(image: imageLoaded)
+			let correctOption = dogOptions.setDogOptions(options: breedOptions, correctBreed: correctBreed)
+
+			for index in 0...3 {
+
+				if index == correctOption {
+					dogOptions.optionsArray[index].button.addTarget(self, action: #selector(self.correctChoice), for: .touchUpInside)
+				} else {
+					dogOptions.optionsArray[index].button.addTarget(self, action: #selector(self.wrongChoice), for: .touchUpInside)
+				}
+			}
+
+			choiceResult.setBreedAnswer(name: correctBreed)
+			choiceResult.nextButton.button.addTarget(self, action: #selector(self.toResultScreen), for: .touchUpInside)
+
+			loadingWarning.isHidden = true
+			dogPhoto.isHidden = false
+			dogOptions.isHidden = false
+		}
 	}
 
 	@objc func correctChoice() {
 		dogOptions.isHidden = true
-		choiceResult.setResultLayout(is: true, species: "Staffordshire Terrier")
+		choiceResult.setResultLayout(correct: true)
 		choiceResult.isHidden = false
 	}
 
 	@objc func wrongChoice() {
 		dogOptions.isHidden = true
-		choiceResult.setResultLayout(is: false, species: "Staffordshire Terrier")
+		choiceResult.setResultLayout(correct: false)
 		choiceResult.isHidden = false
 	}
 
 	@objc func toResultScreen() {
 		self.navigationController?.pushViewController(ResultScreenViewController(), animated: true)
+	}
+
+	@objc func toStartScreen() {
+		self.navigationController?.pushViewController(StartScreenViewController(), animated: true)
 	}
 
 }

@@ -14,26 +14,12 @@ class StartScreenViewModel: NSObject {
 	let dataContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	// swiftlint:enable force_cast
 
-	var breedListToController: (() -> Void) = {}
-
-	var imageListToController: (() -> Void) = {}
+	var bindBreedListToController: (() -> Void) = {}
 
 	private(set) var breedList: [String: [String]]! {
 		didSet {
 			updateBreedList()
-			self.breedListToController()
-		}
-	}
-
-	private(set) var imageList: [String: String]! {
-		didSet {
-			if self.imageList.count == self.imageAmountRequested {
-				self.imageAmountRequested = 0
-				self.imageListToController()
-				self.storeImages()
-			} else {
-				requestImages()
-			}
+			self.bindBreedListToController()
 		}
 	}
 
@@ -72,7 +58,7 @@ class StartScreenViewModel: NSObject {
 		var foundList: [BreedList]?
 		do {
 			foundList = try dataContext.fetch(fetch)
-			if foundList?[0].list?.count == 0 {
+			if foundList?.count == 0 || foundList?[0].list?.count == 0 {
 				foundList = nil
 			}
 		} catch {
@@ -98,112 +84,6 @@ class StartScreenViewModel: NSObject {
 			fatalError("Unable to SAVE BREED LIST DATA to data model!")
 		}
 
-	}
-
-	func getBreedImages(quantity: Int) {
-
-		self.imageList = [:]
-		self.imageAmountRequested = quantity
-
-		requestImages()
-
-	}
-
-	private func requestImages() {
-		if let breedList = fetchBreedList()?[0] {
-
-			var breedName = ""
-
-			if let chosenBreed = breedList.list?.randomElement() {
-
-				let masterBreed = chosenBreed.key
-				var subBreed = ""
-				breedName = masterBreed
-
-				if chosenBreed.value.count != 0 {
-
-					subBreed = chosenBreed.value.randomElement()!
-					breedName += "-" + subBreed
-
-					ServiceAPI.request(router: RouterAPI.getSubBreedImage(
-						master: masterBreed,
-						sub: subBreed
-					)) { result in
-
-						switch result {
-						case .success(let data):
-							do {
-								if let validData = data {
-									let decodedMessage = try JSONDecoder().decode(GetImage.self, from: validData)
-									self.imageList[breedName] = decodedMessage.message
-								}
-							} catch {
-								print(error)
-								return
-							}
-						case .failure(let error):
-							print(error)
-						}
-					}
-				} else {
-
-					ServiceAPI.request(router: RouterAPI.getMasterBreedImage(master: masterBreed)) { result in
-
-						switch result {
-						case .success(let data):
-							do {
-								if let validData = data {
-									let decodedMessage = try JSONDecoder().decode(GetImage.self, from: validData)
-									self.imageList[breedName] = decodedMessage.message
-								}
-							} catch {
-								print(error)
-								return
-							}
-						case .failure(let error):
-							print(error)
-						}
-					}
-				}
-			}
-
-		} else {
-			print("UNABLE to get BREED LIST from DATA")
-		}
-	}
-
-	private func fetchImageContainer() -> [ImageContainer]? {
-		let fetch = ImageContainer.fetchRequest() as NSFetchRequest<ImageContainer>
-		var foundContainer: [ImageContainer]?
-		do {
-			foundContainer = try dataContext.fetch(fetch)
-			if foundContainer?.count == 0 {
-				foundContainer = nil
-			}
-		} catch {
-			fatalError("Unable to FETCH IMAGE CONTAINER DATA from data model!")
-		}
-
-		return foundContainer
-	}
-
-	private func storeImages() {
-
-		if let savedImages = fetchImageContainer() {
-			print("OLD IMAGE CONTAINER")
-			let foundImages = savedImages[0]
-			foundImages.imagesList = self.imageList
-		} else {
-			print("NEW IMAGE CONTAINER")
-			let newImages = ImageContainer(context: self.dataContext)
-			newImages.imagesList = self.imageList
-		}
-
-		do {
-			try dataContext.save()
-		} catch {
-			fatalError("Unable to SAVE IMAGE CONTAINER DATA to data model!")
-		}
 	}
 
 }
