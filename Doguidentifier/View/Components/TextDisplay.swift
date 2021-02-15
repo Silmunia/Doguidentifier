@@ -77,4 +77,8 @@ class TextDisplay: UIView {
 			textLabel.rightAnchor.constraint(equalTo: buttonBackground.rightAnchor, constant: -10)
 		])
 	}
+
+	func setText(text: String) {
+		textLabel.text = text
+	}
 }
